@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@octokit-next/core": "^2.7.0",
     "@primer/react": "^35.27.1",
     "@types/node": "20.5.1",
     "@types/react": "18.2.20",

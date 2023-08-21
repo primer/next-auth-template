@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
 import { useSession } from "next-auth/react";
 // import { GraphQLClient } from "@octokit/graphql";
-import { Octokit } from "@octokit-next/core";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Octokit } from "octokit";
 
 export default function Home() {
   const { data } = useSession();
@@ -56,7 +52,7 @@ export default function Home() {
 
   return (
     <>
-      <main className={`${styles.main} ${inter.className}`}>
+      <main>
         <pre>{JSON.stringify(data, null, 2)}</pre>
         {followers.map((follower) => (
           <div key={follower.login}>
