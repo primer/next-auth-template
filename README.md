@@ -1,8 +1,21 @@
 # next-primer-auth-kit
 
+This project is a boilerplate
+
 ## Getting Started
 
-First, clone the repo, install all the dependencies, and start running the app.
+First, clone the repo.
+
+- In the root directory, create a new environemnt file called `.env.local`.
+- Navigate to https://github.com/settings/developers and create a new oauth app
+- Add your client id and secret to your `.env.local` file
+
+```bash
+GITHUB_APP_CLIENT_ID=xxx
+GITHUB_APP_SECRET=xxx
+```
+
+Next, install all the dependencies, and start running the app.
 
 ```bash
 npm install
