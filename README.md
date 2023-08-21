@@ -1,6 +1,6 @@
 # next-primer-auth-kit
 
-This project is a boilerplate
+This project is a boilerplate to get a GitHub OAuth app quickly up and running.
 
 ## Getting Started
 
