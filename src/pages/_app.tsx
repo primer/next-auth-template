@@ -2,6 +2,7 @@ import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 import { ThemeProvider, BaseStyles, Box } from "@primer/react";
 import "@/styles/reset.css";
+import Layout from "@/components/Layout";
 
 export default function App({
   Component,
@@ -13,13 +14,15 @@ export default function App({
         <SessionProvider session={session}>
           <Box
             backgroundColor={"canvas.default"}
-            height={"100vh"}
+            minHeight={"100vh"}
             width={"100vw"}
             position={"absolute"}
             top={0}
             left={0}
           >
-            <Component {...pageProps} />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
           </Box>
         </SessionProvider>
       </BaseStyles>
