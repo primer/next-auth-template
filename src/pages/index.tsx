@@ -1,37 +1,9 @@
-import { useEffect, useState } from "react";
 import Head from "next/head";
 import { useSession } from "next-auth/react";
-import { Octokit } from "octokit";
-// use stable octokit
+import { Box, Text } from "@primer/react";
 
 export default function Home() {
   const { data } = useSession();
-  const [loading, setLoading] = useState(true);
-  const [notifications, setNotifications] = useState<any[]>([]);
-  const [octokit, setOctokit] = useState<Octokit>();
-
-  useEffect(() => {
-    if (data?.accessToken) {
-      setOctokit(new Octokit({ auth: data.accessToken }));
-      setLoading(false);
-    }
-  }, [data]);
-
-  async function getNotifications() {
-    const { data } = await octokit?.request("GET /notifications");
-    setNotifications(data);
-    console.log(data);
-  }
-
-  useEffect(() => {
-    if (octokit) {
-      getNotifications();
-    }
-  }, [octokit]);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <>
@@ -42,17 +14,19 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-        {notifications.map((notification) => (
-          <div key={notification.id}>
-            <h4>{notification.subject.title}</h4>
-            <p>{notification.repository.name}</p>
-            <p>{notification.repository.owner.login}</p>
-            <p>{notification.updated_at}</p>
-            <p>{notification.reason}</p>
-            <a href={notification.url}>{notification.url}</a>
-          </div>
-        ))}
+        <Box
+          sx={{
+            margin: "0 auto",
+            width: "800px",
+            p: 4,
+            backgroundColor: "canvas.inset",
+            borderRadius: 6,
+            color: "fg.default",
+          }}
+          as="pre"
+        >
+          {JSON.stringify(data, null, 2)}
+        </Box>
       </main>
     </>
   );

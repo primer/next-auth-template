@@ -16,8 +16,9 @@ interface Page {
 // add your pages here
 const pages: Page[] = [
   { name: "Home", path: "/" },
-  { name: "Overview", path: "/overview" },
+  { name: "RestAPI", path: "/rest-api" },
   { name: "GraphQL", path: "/graphql" },
+  { name: "Playground", path: "/playground" },
 ];
 
 export default function Layout({ children }: LayoutProps) {

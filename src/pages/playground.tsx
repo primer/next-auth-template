@@ -5,10 +5,8 @@ import {
   StyledOcticon,
   PageLayout,
   NavList,
-  Heading,
 } from "@primer/react";
 import {
-  MarkGithubIcon,
   CheckIcon,
   CommentIcon,
   MortarBoardIcon,
@@ -17,24 +15,6 @@ import {
 export default function Playground() {
   return (
     <PageLayout containerWidth="xlarge">
-      <PageLayout.Header>
-        <Box
-          py={3}
-          mb={3}
-          borderBottomColor="border.default"
-          borderBottomWidth={1}
-          borderBottomStyle="solid"
-          display="flex"
-          justifyContent="flex-start"
-          alignItems="center"
-          gridGap={3}
-        >
-          <MarkGithubIcon size={32} />
-          <Heading as="h1" sx={{ fontWeight: "normal" }}>
-            Mona's Playground
-          </Heading>
-        </Box>
-      </PageLayout.Header>
       <PageLayout.Pane position="start">
         <NavList>
           <NavList.Item href="#" aria-current="page">

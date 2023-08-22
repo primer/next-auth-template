@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import Head from "next/head";
-import Image from "next/image";
 import { useSession } from "next-auth/react";
-// import { GraphQLClient } from "@octokit/graphql";
 import { Octokit } from "octokit";
+import { Box, Avatar, Text, Heading } from "@primer/react";
 
 export default function Home() {
   const { data } = useSession();
@@ -51,22 +49,62 @@ export default function Home() {
   }
 
   return (
-    <>
-      <main>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
+    <Box as="main" sx={{ margin: "0 auto", maxWidth: 1200 }}>
+      <ListContainer title="Followers">
         {followers.map((follower) => (
-          <div key={follower.login}>
-            <img
-              src={follower.avatarUrl}
-              alt={follower.name}
-              width={50}
-              height={50}
-            />
-            <h4>{follower.name}</h4>
-            <p>{follower.login}</p>
-          </div>
+          <ListItem follower={follower} />
         ))}
-      </main>
-    </>
+      </ListContainer>
+    </Box>
+  );
+}
+
+function ListContainer({ children, title }: any) {
+  return (
+    <Box
+      sx={{
+        border: "1px solid",
+        borderColor: "border.default",
+        borderRadius: 6,
+        overflow: "hidden",
+      }}
+    >
+      <Box
+        sx={{
+          px: 3,
+          py: "12px",
+          backgroundColor: "canvas.subtle",
+        }}
+      >
+        <Heading as="h2" sx={{ fontSize: 20, fontWeight: "semibold" }}>
+          {title}
+        </Heading>
+      </Box>
+      {children}
+    </Box>
+  );
+}
+function ListItem({ follower }: any) {
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        gap: 2,
+        px: 3,
+        py: "12px",
+        borderTop: "1px solid",
+        borderColor: "border.default",
+      }}
+      key={follower.login}
+    >
+      <Avatar src={follower.avatarUrl} alt={follower.name} size={24} />
+      <Heading as="h3" sx={{ fontWeight: "semibold", fontSize: 16 }}>
+        {follower.name}
+      </Heading>
+      <Text as="p" sx={{ color: "fg.muted" }}>
+        {follower.login}
+      </Text>
+    </Box>
   );
 }
