@@ -8,6 +8,7 @@ First, clone the repo.
 
 - In the root directory, create a new environemnt file called `.env.local`.
 - Navigate to https://github.com/settings/developers and create a new oauth app
+- Set the callback URL to `http://localhost:3000/api/auth/callback/github`
 - Add your client id and secret to your `.env.local` file
 
 ```bash
