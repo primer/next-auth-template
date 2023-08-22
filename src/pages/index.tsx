@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useSession } from "next-auth/react";
-import { Box, Text } from "@primer/react";
+import { Box } from "@primer/react";
 
 export default function Home() {
   const { data } = useSession();
@@ -25,7 +25,7 @@ export default function Home() {
           }}
           as="pre"
         >
-          {JSON.stringify(data, null, 2)}
+          {data ? JSON.stringify(data, null, 2) : "Sign in to get started!"}
         </Box>
       </main>
     </>

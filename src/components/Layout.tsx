@@ -13,7 +13,7 @@ interface Page {
   path: string;
 }
 
-// add your pages here
+// add your navigation items here
 const pages: Page[] = [
   { name: "Home", path: "/" },
   { name: "RestAPI", path: "/rest-api" },
