@@ -1,6 +1,6 @@
-# next-primer-auth-kit
+# next-auth-template
 
-This project is a boilerplate to get a GitHub OAuth app quickly up and running.
+This project is a template to help get a GitHub OAuth app quickly up and running with Next.js and Primer.
 
 ## Getting Started
 
