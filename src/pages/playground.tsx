@@ -43,7 +43,7 @@ export default function Playground() {
             mb={3}
           >
             <CodeLine icon={CheckIcon} iconColor="success.fg">
-              Mona's playground successfully initialised...
+              Mona&apos;s playground successfully initialised...
             </CodeLine>
             <CodeLine icon={CommentIcon} iconColor="accent.fg">
               Visit <Text color="text.warning">src/pages/index.js</Text> and
@@ -67,13 +67,19 @@ export default function Playground() {
   );
 }
 
-function CodeLine({ icon, iconColor, children }) {
+interface CodeLineProps {
+  icon: any;
+  iconColor: string;
+  children?: React.ReactNode;
+}
+
+function CodeLine({ icon, iconColor, children }: CodeLineProps) {
   return (
     <Box display="flex" color="fg.onEmphasis" mb={2}>
       <Box display="flex" mt="2px" width={20} minWidth={20}>
         <StyledOcticon icon={icon} size={16} color={iconColor} />
       </Box>
-      <Text as="p" flex={1} fontSize={1} fontFamily="mono" ml={2}>
+      <Text as="p" fontSize={1} fontFamily="mono" ml={2} sx={{ flex: 1 }}>
         {children}
       </Text>
     </Box>

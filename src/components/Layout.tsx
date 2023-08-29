@@ -60,7 +60,7 @@ function Navigation() {
             mr={1}
             sx={{ borderRight: "1px solid", borderColor: "border.muted" }}
           >
-            Mona's Playground
+            Mona&apos;s Playground
           </Text>
         </Box>
         {pages.map((page) => (

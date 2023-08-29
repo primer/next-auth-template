@@ -1,8 +1,20 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { Octokit } from "octokit";
 import { Box } from "@primer/react";
 import { ListContainer, ListItem } from "../components/ListViewLite";
+
+interface QueryResponse {
+  viewer: {
+    followers: {
+      nodes: {
+        name: string;
+        login: string;
+        avatarUrl: string;
+      }[];
+    };
+  };
+}
 
 export default function Home() {
   const { data } = useSession();
@@ -21,7 +33,7 @@ export default function Home() {
     }
   }, [data]);
 
-  async function getFollowers() {
+  const getFollowers = useCallback(async () => {
     const query = `
       query {
         viewer {
@@ -35,15 +47,16 @@ export default function Home() {
         }
       }
     `;
-    const { viewer } = await client?.graphql(query);
-    setFollowers(viewer.followers.nodes);
-  }
+    const response = await client?.graphql<QueryResponse>(query);
+    const viewer = response?.viewer;
+    if (viewer) setFollowers(viewer.followers.nodes);
+  }, [client])
 
   useEffect(() => {
     if (client) {
       getFollowers();
     }
-  }, [client]);
+  }, [client, getFollowers]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -52,8 +65,8 @@ export default function Home() {
   return (
     <Box as="main" sx={{ margin: "0 auto", maxWidth: 1200 }}>
       <ListContainer title="Followers">
-        {followers.map((follower) => (
-          <ListItem follower={follower} />
+        {followers.map((follower, index) => (
+          <ListItem follower={follower} key={index} />
         ))}
       </ListContainer>
     </Box>
