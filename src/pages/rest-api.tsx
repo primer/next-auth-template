@@ -3,10 +3,7 @@ import Head from "next/head";
 import { useSession } from "next-auth/react";
 import { DataTable, Table } from "@primer/react/drafts";
 import { Octokit } from "octokit";
-
-function uppercase(input: string): string {
-  return input[0].toUpperCase() + input.slice(1);
-}
+import { Label, RelativeTime } from "@primer/react";
 
 export default function Home() {
   const { data } = useSession();
@@ -73,37 +70,37 @@ const getNotifications = useCallback(async () => {
             aria-describedby="notifications-subtitle"
             data={notifications}
             columns={[
-              // {
-              //   header: "Title",
-              //   field: "subject.title",
-              //   rowHeader: true,
-              // },
-              // {
-              //   header: "Repository",
-              //   field: "repository.name",
-              // },
-              // {
-              //   header: "Owner",
-              //   field: "repository.owner.login",
-              // },
-              // {
-              //   header: "Updated",
-              //   field: "updated_at",
-              //   renderCell: (row) => {
-              //     return <RelativeTime date={new Date(row.updated_at)} />;
-              //   },
-              // },
-              // {
-              //   header: "Reason",
-              //   field: "reason",
-              // },
-              // {
-              //   header: "Unread",
-              //   field: "unread",
-              //   renderCell: (row) => {
-              //     return row.unread ? <Label>Unread</Label> : null;
-              //   },
-              // },
+              {
+                header: "Title",
+                field: "subject.title",
+                rowHeader: true,
+              },
+              {
+                header: "Repository",
+                field: "repository.name",
+              },
+              {
+                header: "Owner",
+                field: "repository.owner.login",
+              },
+              {
+                header: "Updated",
+                field: "updated_at",
+                renderCell: (row) => {
+                  return <RelativeTime date={new Date(row.updated_at)} />;
+                },
+              },
+              {
+                header: "Reason",
+                field: "reason",
+              },
+              {
+                header: "Unread",
+                field: "unread",
+                renderCell: (row) => {
+                  return row.unread ? <Label>Unread</Label> : null;
+                },
+              },
             ]}
           />{" "}
         </Table.Container>
