@@ -7,22 +7,20 @@ This project is a template to help get a GitHub OAuth app quickly up and running
 1. Create a new repo using this template.
 2. In the root directory, create a new environment file called `.env.local`.
 3. Navigate to https://github.com/settings/developers and create a new OAuth app.
-4. Set the authorization callback URL to `http://localhost:3000/api/auth/callback/github`.
-5. Add your app's client id and secret to your `.env.local` file.
-
+    - Set the authorization callback URL to `http://localhost:3000/api/auth/callback/github`.
+5. Add your app's client id and secret and the following variable to your `.env.local` file:
+    
     ```yaml
     GITHUB_APP_CLIENT_ID=xxx
     GITHUB_APP_SECRET=xxx
-    ```
-
-6. Next, add the following variables to your `.env.local` file.
-
-    ```yaml
     NEXTAUTH_SECRET=xxx
-    NEXTAUTH_URL=http://localhost:3000
     ```
+    
+    For the `NEXTAUTH_SECRET`, you can generate a random value in the command line via this `openssl` command:
 
-    For the `NEXTAUTH_SECRET`, you can create a value on the command line via this `openssl` command: `openssl rand -base64 32`.
+    ```shell
+    openssl rand -base64 32`
+    ```
 
 7. Finally, install all the dependencies, and start running the app.
 
