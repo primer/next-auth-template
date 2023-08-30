@@ -69,7 +69,7 @@ const getNotifications = useCallback(async () => {
             aria-labelledby="notifications"
             aria-describedby="notifications-subtitle"
             data={notifications}
-            columns={[
+            columns = {[ // @ts-ignore
               {
                 header: "Title",
                 field: "subject.title",

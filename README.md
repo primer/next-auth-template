@@ -81,6 +81,10 @@ You can modify the data that is being pulled in by changing this query.
 GitHub API GraphQL explorer:
 https://docs.github.com/en/graphql/overview/explorer
 
+## Deployment
+
+Follow Auth.js's [deployment documentation](https://authjs.dev/guides/basics/deployment) to deploy your app via Vercel.
+
 ## Learn More
 
 Here's a list of resources of the different dependencies used in this project:
