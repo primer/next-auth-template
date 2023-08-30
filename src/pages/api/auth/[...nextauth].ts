@@ -1,10 +1,10 @@
-import NextAuth from 'next-auth';
-import GithubProvider from 'next-auth/providers/github';
+import NextAuth from "next-auth";
+import GithubProvider from "next-auth/providers/github";
 
 const clientId = process.env.GITHUB_APP_CLIENT_ID;
 const clientSecret = process.env.GITHUB_APP_SECRET;
 
-if (!clientId || !clientSecret) throw new Error('Environment variables not set');
+if (!clientId || !clientSecret) throw new Error("Environment variables not set");
 
 export default NextAuth({
   providers: [
@@ -12,7 +12,7 @@ export default NextAuth({
       clientId: clientId,
       clientSecret: clientSecret,
       authorization: {
-        params: { scope: 'read:user user:email notifications public_repo' },
+        params: { scope: "read:user user:email notifications public_repo" },
       },
     }),
   ],
