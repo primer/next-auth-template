@@ -29,8 +29,8 @@ This project is a template to help get a GitHub OAuth app quickly up and running
     # then
     npm run dev
     ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    
+    Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
 ## Using the Rest API
 
