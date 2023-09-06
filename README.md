@@ -4,27 +4,33 @@ This project is a template to help get a GitHub OAuth app quickly up and running
 
 ## Getting Started
 
-First, clone the repo.
+1. Create a new repo using this template.
+1. In the root directory, create a new environment file called `.env.local`.
+1. Navigate to https://github.com/settings/developers and create a new OAuth app.
+    - Set the authorization callback URL to `http://localhost:3000/api/auth/callback/github`.
+1. Add your app's client id and secret and the following variable to your `.env.local` file:
+    
+    ```yaml
+    GITHUB_APP_CLIENT_ID=xxx
+    GITHUB_APP_SECRET=xxx
+    NEXTAUTH_SECRET=xxx
+    ```
+    
+    For the `NEXTAUTH_SECRET`, you can generate a random value in the command line via this `openssl` command:
 
-- In the root directory, create a new environemnt file called `.env.local`.
-- Navigate to https://github.com/settings/developers and create a new oauth app
-- Set the callback URL to `http://localhost:3000/api/auth/callback/github`
-- Add your client id and secret to your `.env.local` file
+    ```shell
+    openssl rand -base64 32`
+    ```
 
-```bash
-GITHUB_APP_CLIENT_ID=xxx
-GITHUB_APP_SECRET=xxx
-```
+1. Finally, install all the dependencies, and start running the app.
 
-Next, install all the dependencies, and start running the app.
-
-```bash
-npm install
-# then
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    ```shell
+    npm install
+    # then
+    npm run dev
+    ```
+    
+    Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
 ## Using the Rest API
 
@@ -74,6 +80,10 @@ You can modify the data that is being pulled in by changing this query.
 
 GitHub API GraphQL explorer:
 https://docs.github.com/en/graphql/overview/explorer
+
+## Deployment
+
+Follow Auth.js's [deployment documentation](https://authjs.dev/guides/basics/deployment) to deploy your app via Vercel.
 
 ## Learn More
 

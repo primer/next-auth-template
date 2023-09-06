@@ -1,13 +1,9 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Head from "next/head";
 import { useSession } from "next-auth/react";
 import { DataTable, Table } from "@primer/react/drafts";
 import { Octokit } from "octokit";
 import { Label, RelativeTime } from "@primer/react";
-
-function uppercase(input: string): string {
-  return input[0].toUpperCase() + input.slice(1);
-}
 
 export default function Home() {
   const { data } = useSession();
@@ -22,17 +18,18 @@ export default function Home() {
     }
   }, [data]);
 
-  async function getNotifications() {
-    const { data } = await octokit?.request("GET /notifications");
-    setNotifications(data);
-    console.log(data);
-  }
+const getNotifications = useCallback(async () => {
+    const response = await octokit?.request("GET /notifications");
+    const data = response?.data;
+    if (data) setNotifications(data);
+    // console.log(data);
+  }, [octokit]);
 
   useEffect(() => {
     if (octokit) {
       getNotifications();
     }
-  }, [octokit]);
+  }, [getNotifications, octokit]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -72,7 +69,7 @@ export default function Home() {
             aria-labelledby="notifications"
             aria-describedby="notifications-subtitle"
             data={notifications}
-            columns={[
+            columns = {[ // @ts-ignore
               {
                 header: "Title",
                 field: "subject.title",
